@@ -22,11 +22,11 @@ class Piano(models.Model):
         return self.brand
 
 class MaintenanceRecord(models.Model):
-
    date = models.DateField("Maintenance Date", default=datetime.date.today),
-   technician = models.CharField(),
+   technician = models.CharField(max_length=50),
    description = models.TextField()
    piano = models.ForeignKey(Piano, on_delete=models.CASCADE)
-
+   print(piano)
    def __str__(self):
-        return f'{self.date} - {self.technician}'
+        return f'{self.date}  - {self.technician}'
+

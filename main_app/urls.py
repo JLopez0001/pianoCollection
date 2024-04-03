@@ -1,10 +1,12 @@
 from django.urls import path, include
-from .views import Home, PianoList,PianoDetail
+from .views import Home, PianoList,PianoDetail, MaintenanceListCreate, MaintenanceDetail
 
 urlpatterns = [
     path('', Home.as_view(), name='home'),
     path('pianos/', PianoList.as_view(), name='Piano-list'),
     path('pianos/<int:id>/', PianoDetail.as_view(), name='Piano-detail'),
-    path('pianos/<int:id>/maintenance/', MaintenanceListCreate.as.view(), name='maintenance-list-create'),
-    path('pianos/<int:id>/maintenance/<int:id>', MaintenanceDetail.as.view(), name='maintenance-detail')
+    path('pianos/<int:piano_id>/maintenance/', MaintenanceListCreate.as_view(), name='maintenance-list-create'),
+    path('pianos/<int:piano_id>/maintenance/<int:id>', MaintenanceDetail.as_view(), name='maintenance-detail')
 ]
+
+
