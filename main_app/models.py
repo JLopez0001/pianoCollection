@@ -1,4 +1,5 @@
 from django.db import models
+import datetime  
 
 # Create your models here.
 class Piano(models.Model):
@@ -19,3 +20,13 @@ class Piano(models.Model):
 
     def __str__(self):
         return self.brand
+
+class MaintenanceRecord(models.Model):
+
+   date = models.DateField("Maintenance Date", default=datetime.date.today),
+   technician = models.CharField(),
+   description = models.TextField()
+   piano = models.ForeignKey(Piano, on_delete=models.CASCADE)
+
+   def __str__(self):
+        return f'{self.date} - {self.technician}'
