@@ -22,11 +22,30 @@ class Piano(models.Model):
         return self.brand
 
 class MaintenanceRecord(models.Model):
-   date = models.DateField("Maintenance Date", default=datetime.date.today),
-   technician = models.CharField(max_length=50),
+   date = models.DateField("Maintenance Date", default=datetime.date.today)
+   technician = models.CharField(max_length=50,  null=True, blank=True)
    description = models.TextField()
    piano = models.ForeignKey(Piano, on_delete=models.CASCADE)
-   print(piano)
+
    def __str__(self):
         return f'{self.date}  - {self.technician}'
 
+class Performer(models.Model):
+
+    STLYE_CHOICES = [
+        ('classical', 'Classical'),
+        ('jazz', 'Jazz'),
+        ('rock and roll', 'Rock and Roll'),
+        ('pop', 'Pop'),
+        ('ragtime', 'Ragtime'),
+        ('boogie-Woogie', 'Boogie-Woogie'),
+        ('contemporary', 'Contemporary'),
+    ]
+
+    name = models.CharField(max_length=50)
+    age = models.IntegerField()
+    years_of_experience = models.IntegerField()
+    style = models.CharField(max_length=15, choices=STLYE_CHOICES)
+
+    def __str__(self):
+        return f'{self.name} - Style: {self.style}'

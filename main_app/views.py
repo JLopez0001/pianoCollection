@@ -1,8 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import generics
-from .models import Piano, MaintenanceRecord
-from .serializers import PianoSerializer, MaintenanceRecordSerializer
+from .models import Piano, MaintenanceRecord, Performer
+from .serializers import PianoSerializer, MaintenanceRecordSerializer, PerformerSerializer
 
 # Create your views here.
 
@@ -44,3 +44,12 @@ class MaintenanceDetail(generics.RetrieveUpdateDestroyAPIView):
     piano_id = self.kwargs['piano_id']
     return MaintenanceRecord.objects.filter(piano_id = piano_id)
  
+
+class PerformerCreate(generics.ListCreateAPIView):
+  queryset = Performer.objects.all()
+  serializer_class = PerformerSerializer
+
+class PerformerDetail(generics.RetrieveUpdateDestroyAPIView):
+  queryset = Performer.objects.all()
+  serializer_class = PerformerSerializer
+  lookup_field = 'id'

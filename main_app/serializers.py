@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Piano, MaintenanceRecord
+from .models import Piano, MaintenanceRecord, Performer
 
 class PianoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,3 +11,8 @@ class MaintenanceRecordSerializer(serializers.ModelSerializer):
         model = MaintenanceRecord
         fields = '__all__'
         read_only_fields = ('piano',)
+
+class PerformerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Performer
+        fields = '__all__'
